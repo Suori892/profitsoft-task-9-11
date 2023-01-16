@@ -23,7 +23,7 @@ import lombok.Setter;
 public class Buyer {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int personId;
+  private Long buyerId;
 
   @Column(name = "name")
   private String name;

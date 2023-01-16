@@ -22,7 +22,7 @@ import lombok.Setter;
 public class Item {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int orderId;
+  private Long itemId;
 
   @ManyToOne
   @JoinColumn(name = "buyer_id")
@@ -33,4 +33,7 @@ public class Item {
 
   @Column(name = "item_category")
   private String itemCategory;
+
+  @Column(name = "item_price")
+  private Integer itemPrice;
 }
