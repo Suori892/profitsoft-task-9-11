@@ -26,7 +26,7 @@ public class Item {
 
   @ManyToOne
   @JoinColumn(name = "buyer_id")
-  private Buyer buyerId;
+  private Buyer buyer;
 
   @Column(name = "item_name")
   private String itemName;

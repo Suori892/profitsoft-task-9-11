@@ -23,9 +23,7 @@ public class BuyerServiceImpl implements BuyerService {
 
 
   @Override
-  public List<BuyerDto> getAllBuyers(Pageable pageable, int page) {
-    Pageable updatedPageable = PageRequest.of(-1, pageable.getPageSize());
-    Page<BuyerDto> buyerPage = repository.findAll(updatedPageable).map(BuyerDto::createBuyerDto);
-    return buyerPage.getContent();
+  public List<BuyerDto> getAllBuyers() {
+     return repository.findAll().stream().map(BuyerDto::createBuyerDto).toList();
   }
 }

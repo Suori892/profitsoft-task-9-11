@@ -7,5 +7,5 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface BuyerService {
-  List<BuyerDto> getAllBuyers(Pageable pageable, int page);
+  List<BuyerDto> getAllBuyers();
 }

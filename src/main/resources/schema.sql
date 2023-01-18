@@ -8,7 +8,9 @@ insert into Buyer(name, email) values ('John', 'john232@gmail.com'),
                                       ('Michael', 'michael897@gmail.com'),
                                       ('Bob', 'bobbb24@gmail.com'),
                                       ('Ann', 'ann90@gmail.com'),
-                                      ('Albert', 'albert8975@gmail.com');
+                                      ('Albert', 'albert8975@gmail.com'),
+                                      ('Rafael', 'raffy89@gmail.com'),
+                                      ('Maria', 'maria8712@gmail.com');
 
 create table if not exists Item(
     item_id bigint auto_increment primary key,
@@ -27,4 +29,11 @@ insert into Item(buyer_id, item_name, item_category, item_price) values (1, 'hea
                                                                         (4, 'iphone', 'electronics', 500),
                                                                         (5, 'notebook', 'education', 100),
                                                                         (5, 'book', 'education', 100),
-                                                                        (5, 'pan', 'kitchen', 100);
+                                                                        (5, 'pan', 'kitchen', 100),
+                                                                        (6, 'book', 'education', 100),
+                                                                        (6, 'notebook', 'education', 100),
+                                                                        (6, 'book', 'education', 100),
+                                                                        (7, 'pot', 'kitchen', 200),
+                                                                        (7, 'pen', 'education', 100),
+                                                                        (7, 'pen', 'education', 100),
+                                                                        (7, 'iphone', 'electronics', 500);

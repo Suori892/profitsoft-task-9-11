@@ -19,6 +19,8 @@ public class ItemDto {
     private String itemCategory;
     @NotNull
     private Integer itemPrice;
+    @NotNull
+    private Long buyerId;
 
     public static ItemDto createItemDto(Item item) {
         return ItemDto.builder()
@@ -26,6 +28,7 @@ public class ItemDto {
                 .itemName(item.getItemName())
                 .itemCategory(item.getItemCategory())
                 .itemPrice(item.getItemPrice())
+                .buyerId(item.getBuyer().getBuyerId())
                 .build();
     }
 }

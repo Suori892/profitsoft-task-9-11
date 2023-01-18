@@ -8,7 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import java.util.Set;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,5 +32,5 @@ public class Buyer {
   private String email;
 
   @OneToMany(cascade = CascadeType.ALL)
-  private Set<Item> items;
+  private List<Item> items;
 }

@@ -3,6 +3,9 @@ package com.example.restapihomework.controller;
 import com.example.restapihomework.dto.ItemDto;
 import com.example.restapihomework.service.interfaces.ItemService;
 import jakarta.validation.Valid;
+import java.util.List;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(path = "api/item", produces = "application/json")
 public class ItemController {
-    private final int PAGE_SIZE = 5;
+    private final static int PAGE_SIZE = 2;
 
     private final ItemService itemService;
 
@@ -33,6 +36,14 @@ public class ItemController {
     public ResponseEntity<ItemDto> getItem(@PathVariable("id") Long id) {
         ItemDto item = itemService.getItem(id);
         return ResponseEntity.ok(item);
+    }
+
+    @GetMapping("/categoryAndPrice/{page}")
+    public ResponseEntity<List<ItemDto>> findAllByItemCategoryAndItemPrice(@PageableDefault(size = PAGE_SIZE)
+                                                                           Pageable pageable, @RequestParam(value = "category") String category,
+                                                                           @RequestParam(value = "price") Integer price, @PathVariable("page") int page) {
+        List<ItemDto> itemList = itemService.findAllByItemCategoryAndItemPrice(pageable, category, price, page);
+        return ResponseEntity.ok(itemList);
     }
 
     @DeleteMapping("delete/{id}")
