@@ -15,53 +15,53 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ItemServiceImpl implements ItemService {
-  private final ItemRepository repository;
-  private final BuyerRepository buyerRepository;
+    private final ItemRepository repository;
+    private final BuyerRepository buyerRepository;
 
-  @Autowired
-  public ItemServiceImpl(ItemRepository repository, BuyerRepository buyerRepository) {
-    this.repository = repository;
-    this.buyerRepository = buyerRepository;
-  }
+    @Autowired
+    public ItemServiceImpl(ItemRepository repository, BuyerRepository buyerRepository) {
+        this.repository = repository;
+        this.buyerRepository = buyerRepository;
+    }
 
-  @Override
-  public Item createItem(ItemDto item) {
-    Item newItem = convertItemDtoToItem(item);
-    return repository.save(newItem);
-  }
+    @Override
+    public Item createItem(ItemDto item) {
+        Item newItem = convertItemDtoToItem(item);
+        return repository.save(newItem);
+    }
 
-  @Override
-  public Item updateItem(Long id, ItemDto item) {
-    Item newItem = convertItemDtoToItem(item);
-    newItem.setItemId(id);
-    return repository.save(newItem);
-  }
+    @Override
+    public Item updateItem(Long id, ItemDto item) {
+        Item newItem = convertItemDtoToItem(item);
+        newItem.setItemId(id);
+        return repository.save(newItem);
+    }
 
-  @Override
-  public ItemDto getItem(Long id) {
-    Item item = repository.findById(id).orElseThrow(NotFoundException::new);
-    return ItemDto.createItemDto(item);
-  }
+    @Override
+    public ItemDto getItem(Long id) {
+        Item item = repository.findById(id).orElseThrow(NotFoundException::new);
+        return ItemDto.createItemDto(item);
+    }
 
-  @Override
-  public void deleteItem(Long id) {
-    repository.deleteById(id);
-  }
+    @Override
+    public void deleteItem(Long id) {
+        repository.deleteById(id);
+    }
 
-  @Override
-  public List<ItemDto> findAllByItemCategoryAndItemPrice(Pageable pageable, String category, Integer price, int page) {
-    Pageable updatedPageable = PageRequest.of(0, pageable.getPageSize());
-    Page<ItemDto> itemPage = repository.findAllByItemCategoryAndItemPrice(updatedPageable, category, price)
+    @Override
+    public List<ItemDto> findAllByItemCategoryAndItemPrice(Pageable pageable, String category,
+                                                           String name, int page) {
+        Pageable updatedPageable = PageRequest.of(page - 1, pageable.getPageSize());
+        Page<ItemDto> itemPage = repository.findAllByItemCategoryAndItemName(updatedPageable, category, name)
             .map(ItemDto::createItemDto);
-    return itemPage.getContent();
-  }
+        return itemPage.getContent();
+    }
 
-  private Item convertItemDtoToItem(ItemDto itemDto) {
-    Item item = new Item();
-    item.setItemName(itemDto.getItemName());
-    item.setItemCategory(itemDto.getItemCategory());
-    item.setItemPrice(item.getItemPrice());
-    item.setBuyer(buyerRepository.findById(itemDto.getBuyerId()).orElseThrow(NotFoundException::new));
-    return item;
-  }
+    private Item convertItemDtoToItem(ItemDto itemDto) {
+        Item item = new Item();
+        item.setItemName(itemDto.getItemName());
+        item.setItemCategory(itemDto.getItemCategory());
+        item.setBuyer(buyerRepository.findById(itemDto.getBuyerId()).orElseThrow(NotFoundException::new));
+        return item;
+    }
 }

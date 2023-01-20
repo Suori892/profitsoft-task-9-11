@@ -41,8 +41,8 @@ public class ItemController {
     @GetMapping("/categoryAndPrice/{page}")
     public ResponseEntity<List<ItemDto>> findAllByItemCategoryAndItemPrice(@PageableDefault(size = PAGE_SIZE)
                                                                            Pageable pageable, @RequestParam(value = "category") String category,
-                                                                           @RequestParam(value = "price") Integer price, @PathVariable("page") int page) {
-        List<ItemDto> itemList = itemService.findAllByItemCategoryAndItemPrice(pageable, category, price, page);
+                                                                           @RequestParam(value = "name") String name, @PathVariable("page") int page) {
+        List<ItemDto> itemList = itemService.findAllByItemCategoryAndItemPrice(pageable, category, name, page);
         return ResponseEntity.ok(itemList);
     }
 

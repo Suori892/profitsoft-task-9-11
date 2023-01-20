@@ -1,6 +1,5 @@
 package com.example.restapihomework.repository;
 
-import com.example.restapihomework.model.Buyer;
 import com.example.restapihomework.model.Item;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -9,5 +8,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ItemRepository extends JpaRepository<Item, Long> {
-    Page<Item> findAllByItemCategoryAndItemPrice(Pageable pageable, String itemCategory, Integer itemPrice);
+    Page<Item> findAllByItemCategoryAndItemName(Pageable pageable, String itemCategory, String itemName);
 }

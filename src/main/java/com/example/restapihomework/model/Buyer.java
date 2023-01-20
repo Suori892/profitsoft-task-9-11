@@ -21,16 +21,16 @@ import lombok.Setter;
 @NoArgsConstructor
 @Table(name = "Buyer")
 public class Buyer {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long buyerId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long buyerId;
 
-  @Column(name = "name")
-  private String name;
+    @Column(name = "name")
+    private String name;
 
-  @Column(name = "email")
-  private String email;
+    @Column(name = "email")
+    private String email;
 
-  @OneToMany(cascade = CascadeType.ALL)
-  private List<Item> items;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Item> items;
 }

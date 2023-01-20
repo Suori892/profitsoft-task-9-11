@@ -1,7 +1,6 @@
 package com.example.restapihomework.dto;
 
 import com.example.restapihomework.model.Buyer;
-import com.example.restapihomework.model.Item;
 import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

@@ -18,8 +18,6 @@ public class ItemDto {
     @Size(min = 1, max = 255)
     private String itemCategory;
     @NotNull
-    private Integer itemPrice;
-    @NotNull
     private Long buyerId;
 
     public static ItemDto createItemDto(Item item) {
@@ -27,7 +25,6 @@ public class ItemDto {
                 .itemId(item.getItemId())
                 .itemName(item.getItemName())
                 .itemCategory(item.getItemCategory())
-                .itemPrice(item.getItemPrice())
                 .buyerId(item.getBuyer().getBuyerId())
                 .build();
     }
